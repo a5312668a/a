@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>普拉提管理平台</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="icon" type="image/png" href="http://127.0.0.1:8903/img/index/xhlogo.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<!-- load css -->
+	<link href="blue/assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="common/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="common/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/adminstyle.css" media="all">
+	<link rel="stylesheet" href="standard/static/theme/default/css/console.css">
+	<link rel="stylesheet" href="standard/static/theme/default/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="standard/static/plugs/awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="standard/static/plugs/bootstrap/css/bootstrap.min.css">
+	<link href="standard/static/plugs/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="standard/static/plugs/awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<script src="standard/static/plugs/jquery/jquery.min.js" type="text/javascript"></script>
+	<script src="standard/static/plugs/require/require.js" type="text/javascript"></script>
+	<script src="standard/static/admin/app.js" type="text/javascript"></script>
+	<script type="text/javascript">
+        function changeFrameHeight() {
+            var ifm = document.getElementById("mainFrame");
+            ifm.height = document.documentElement.clientHeight - 80;
+        }
+        window.onresize = function() {
+            changeFrameHeight();
+        }
+
+        function reload() {
+            document.getElementById('mainFrame').contentWindow.location.reload(true);
+        }
+	</script>
+	<style>
+		.layui-layout-admin .layui-side {
+			top: 50px !important;
+		}
+
+		.layui-nav .layui-nav-item a:hover,
+		.layui-nav .layui-this a {
+			text-decoration: none;
+		}
+
+		.layui-nav .layui-nav-item a:focus {
+			text-decoration: none;
+		}
+
+		.layui-nav-tree .layui-nav-child,
+		.layui-nav-tree .layui-nav-child a:hover {
+			background: #000000;
+			color: #fff;
+		}
+
+		.layui-side-bg {
+			background: #293038;
+		}
+
+		iframe#mainFrame {
+			width: 100%;
+			height:600 px;
+		}
+
+		dl {
+			margin-top: 0;
+			margin-bottom: 0px !important;
+		}
+		body{
+			margin:0;
+			padding:0;
+		}
+	</style>
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin" id="layui_layout">
+	<!-- 顶部区域 -->
+	<div class="console-topbar">
+		<div class="topbar-wrap topbar-clearfix">
+			<!-- logo区域 -->
+			<div class="topbar-head topbar-left">
+				<a class="topbar-logo topbar-left" href="#" title="logo">
+							<span class="icon-logo">
+							<d id="platformname" style="cursor: default">普拉提管理平台</d> <sup id="pversion">v2.0</sup>
+						</span>
+				</a>
+				<!--隐藏左侧二三级菜单区域插件 开始-->
+				<div class="larry-side-menu" style="display: none">
+					<i class="fa fa-bars" aria-hidden="true"></i>
+				</div>
+				<!--隐藏左侧二三级菜单区域插件 结束-->
+			</div>
+			<!-- 顶级菜单区域 -->
+			<div id="first-menus-tree">
+				<!-- 
+				<a class="topbar-home-link topbar-btn topbar-left">
+					<span><i class="layui-icon" style="font-size: 14px">&#xe60c;</i></span>
+				</a>
+				 -->
+			</div>
+			<!-- 右侧导航 -->
+			<div class="topbar-info topbar-right">
+				<a id="reloadFrame" data-reload data-tips-text='刷新' onclick="reload()" style='width:50px' class=" topbar-btn topbar-left topbar-info-item text-center">
+					<span class='glyphicon glyphicon-refresh'></span>
+				</a>
+				<div class="topbar-left topbar-user">
+					<div class="dropdown topbar-info-item">
+						<a href="#" class="dropdown-toggle topbar-btn text-center" data-toggle="dropdown">
+							<span class='glyphicon glyphicon-user' id="span-loginName"></span>
+							<span class="glyphicon glyphicon-menu-up transition" style="font-size:12px"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="topbar-info-btn">
+								<a href="/html/user/userInfo.html" target="mainFrame">
+									<span><i class='glyphicon glyphicon-edit'></i> 个人资料</span>
+								</a>
+							</li>
+							<li class="topbar-info-btn">
+								<a href="/html/user/changePwd.html" target="mainFrame">
+									<span><i class='glyphicon glyphicon-lock'></i> 修改密码</span>
+								</a>
+							</li>
+							<li class="topbar-info-btn">
+								<a id="btn_logout" href="#">
+									<span><i class="glyphicon glyphicon-log-out"></i> 退出登录</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 左侧侧边导航开始 -->
+	<div class="layui-side layui-side-bg layui-larry-side" id="larry-side">
+		<div class="layui-side-scroll" id="larry-nav-side" lay-filter="side">
+			<!-- 左侧菜单 -->
+			<ul class="layui-nav layui-nav-tree" id="second-menu-tree">
+				<!-- 
+				<li class="layui-nav-item layui-this">
+					<a href="javascript:;" data-url="main.html" style="background-color: #3a3d48 !important;">
+						<i class="fa fa-area-chart"></i>
+						<span>后台首页</span>
+					</a>
+				</li>
+				 -->
+			</ul>
+		</div>
+	</div>
+	<!-- 左侧侧边导航结束 -->
+	<!-- 右侧主体内容 -->
+	<div class="framework-container" style="left: 10.4%;">
+		<div class="ibox">
+			<div class="ibox-content">
+				<iframe id="mainFrame" name="mainFrame" class="larry-iframe" data-id='0'
+						onload="changeFrameHeight()" frameborder="0" src=""
+						scrolling="auto"
+				></iframe><!--mainNew.html-->
+			</div>
+		</div>
+	</div>
+	<!--<div class="layui-body">
+    &lt;!&ndash; 内容主体区域 &ndash;&gt;
+    <div id="right" style="padding: 0px;">
+        <iframe id="mainFrame" width="100%" name="mainFrame" scrolling="yes" onload="changeFrameHeight()" frameborder="0"></iframe> &lt;!&ndash; src="" style="overflow:hidden;" scrolling="yes" frameborder="no" width="1800px" height="870px" &ndash;&gt;
+    </div>
+</div>-->
+	<!-- 底部区域
+<div class="layui-footer layui-larry-foot" id="larry-footer">
+    <div class="layui-mian">
+        <p class="p-admin">
+            <span id="bbbbb" onclick="changeTxt()">2018 &copy;</span> 广州智深数据科技有限公司 版权所有
+        </p>
+    </div>
+</div>-->
+</div>
+
+<script src="js/lib/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="js/util/StringUtil.js" type="text/javascript"></script>
+<script src="js/util/SessionUtil.js" type="text/javascript"></script>
+<script src="js/util/StringUtil.js" type="text/javascript"></script>
+<!-- sweet alert  -->
+<script src="blue/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+<!-- 加载js文件-->
+<script type="text/javascript" src="common/layui/layui.js" id="layui-js"></script>
+<script type="text/javascript" src="js/larry.js" id="larry-js"></script>
+<script type="text/javascript" src="js/index.js" id="index-js"></script>
+
+
+</body>
+
+<script type="text/javascript">
+    $(function() {
+        // 初始化
+        init();
+    })
+    
+    /**
+     * 初始化
+     */
+    function init() {
+
+        //获取权限菜单树
+        getMenuTree();
+
+        //绑定事件
+        bindEvent();
+
+        //展示用户信息
+        showUserInfo();
+    }
+
+    /**
+     * 获取菜单树
+     */
+    function getMenuTree() {
+        $.ajax({
+            url: "/menu/getMenuTree",
+            data: {
+                "access_token": getAccessToken(),
+                "permission":"/auth/getMenuTree"
+            },
+            type: "post",
+            async: false,
+            success: function(result) {
+                if(result.code == "0") {
+                    var menuList = result.data;
+                    createFirstMenusHtml(menuList);
+                    //将用户权限菜单存在session中
+                    sessionStorage.setItem("sougua-user-menu-list", JSON.stringify(menuList));
+                }else if(result.code == "403"){
+                    window.location.href = "/login.html";
+                }else if(result.code == "401"){
+                    swal({
+                        title: "登录信息已过期，请重新登录!",
+                        text: "1秒后自动关闭...",
+                        type: "warning",
+                        timer: 1000,
+                        showConfirmButton: false
+                    },function(){
+                        parent.window.location.href = "/login.html";
+					});
+                }
+            },
+            error: function(XMLHttpRequest) {
+                if(XMLHttpRequest.status == "403") {
+                    window.location.href = "/login.html";
+                }
+            },
+        })
+    }
+
+    /**
+     * 生成一级菜单
+     */
+    function createFirstMenusHtml(treeMenu) {
+        var firstMenusHtml = "";
+        for(var i in treeMenu) {
+            var firstMenu = treeMenu[i];
+            if(firstMenu.parentId == 0) {
+                firstMenusHtml += '<a class="topbar-home-link topbar-btn topbar-left" href="#" menuId = ' + firstMenu.id + ' onclick="createLeftMenusHtml(this)" >' +
+                    			  		'<i class="' + firstMenu.icon + '"></i>&nbsp;'+
+                    			  		'<span>' + firstMenu.name + '</span>'+
+                    			   '</a>';
+            }
+        }
+        $("#first-menus-tree").html(firstMenusHtml);
+    }
+
+    /**
+     * 创建左侧菜单
+     * @param {Object} ele
+     */
+    function createLeftMenusHtml(ele) {
+    	 getAccessToken();
+        //从session中取出菜单列表
+        var menusJson = sessionStorage.getItem("sougua-user-menu-list");
+        var menus = JSON.parse(menusJson);
+        //获取到当前选中的一级菜单Id
+        var firstMenuId = $(ele).attr("menuId");
+
+        //清空之前的菜单html
+        $("#second-menu-tree").html("");
+
+        //二级菜单
+        for(var x in menus) {
+
+            var secondMenu = menus[x];
+
+            if(secondMenu.parentId == firstMenuId) {
+
+                var childDId = "child-menu-" + secondMenu.id;
+                var secondMenuHtml = '<li class="layui-nav-item layui-nav-itemed">' +
+                    					'<a href="#">' +
+                    						'<i class="' + secondMenu.icon + '"></i>' +
+                   							'<span>' + secondMenu.name + '</span>' +
+                    						'<em class="layui-nav-more"></em>' +
+                    					'</a>' +
+                    					'<dl class="layui-nav-child" id="' + childDId + '">' +
+                    					'</dl>' +
+                    				 '</li>';
+                $("#second-menu-tree").append(secondMenuHtml);
+                //三级菜单
+                for(var y in menus) {
+                    var thirdMenu = menus[y];
+
+                    if(thirdMenu.parentId == secondMenu.id) {
+                        if(isEmpty(thirdMenu.permission)) {
+                            var thirdMenuHtml = '<dd>' +
+                                					'<a href="#" data-url="' + thirdMenu.href + '" menu-name=' + thirdMenu.name + ' name="btn-menu" onclick="hrefPage(this)">' +
+                                						'<i class="' + thirdMenu.icon + '" data-icon="' + thirdMenu.icon + '"></i>' +
+                                						'<span> '+ thirdMenu.name + '</span>' +
+                                					'</a>' +
+                                				'</dd>';
+                            $("#" + childDId).append(thirdMenuHtml);
+                        }
+                    }
+                }
+            }
+        }
+        $.getScript("js/lib/jquery-3.2.1.min.js")
+        $.getScript("common/layui/lay/modules/layer.js");
+        $.getScript("common/layui/lay/modules/element.js");
+        $.getScript("common/layui/layui.js");
+        $.getScript("js/larry.js")
+        $.getScript("js/index.js");
+        // 点击第一个三级菜单
+        thirdMenuTrigger();
+    }
+	
+    function doTrigger() {
+    	// 页面加载完成,触发点击第一个菜单事件
+        if(document.readyState == "complete") {
+            //触发器
+            firstMenuTrigger();
+        }
+    }
+
+    /**
+     *切换页面
+     */
+    function hrefPage(ele) {
+        $(".larry-iframe").attr("src", $(ele).attr("data-url"));
+        $("#tab-title").text($(ele).attr("menu-name"));
+    }
+	
+    // 点击第一个一级菜单
+    function firstMenuTrigger() {
+        $("#first-menus-tree a:first-child").trigger("click");
+    }
+    
+    // 点击第一个三级菜单
+    function thirdMenuTrigger(){
+    	$("#second-menu-tree li:first-child dd:first-child").addClass("layui-this");
+    	$("#second-menu-tree li:first-child dd:first-child a:first-child").trigger("click");
+    }
+
+    /**
+     * 绑定事件
+     */
+    function bindEvent() {
+        //退出
+        $("#btn_logout").on("click", function() {
+            logout();
+        })
+        document.onreadystatechange = doTrigger;
+    }
+
+    /**
+     * 展示用户信息
+     */
+    function showUserInfo() {
+        var user = getUser();
+        sessionStorage.setItem("userId", user.data.id);
+        $("#span-loginName").text(user.data.nikeName);
+    }
+
+    /**
+     * 退出
+     */
+    function logout() {
+        swal({
+            title: "系统提示",
+            text: "确认注销登录吗？",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "是的, 注销!",
+            cancelButtonText: "不, 取消",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function(isConfirm){
+            if (isConfirm) {
+                swal({
+                    title: "已注销!",
+                    text: "1秒后自动关闭...",
+                    type: "success",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+                $.ajax({
+                    url: "/user/logout",
+                    data: {
+                        "access_token": getAccessToken()
+                    },
+                    type: "post",
+                    async: false,
+                    success: function(result) {
+                        configuration();
+                        window.location.href = "/login.html";
+                    },
+                    error: function(XMLHttpRequest) {
+                        if (XMLHttpRequest.status == "403") {
+                            configuration();
+                            parent.window.location.href = "/login.html";
+                        } else {
+                            configuration();
+                            window.location.href = "/404.html";
+                        }
+                    },
+                })
+            } else {
+                swal({
+                    title: "取消!",
+                    text: "1秒后自动关闭...",
+                    type: "error",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+            }
+        });
+    }
+</script>
+<script src="standard/static/admin/listen.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="mainHtml">
+
+<head>
+<meta charset="UTF-8">
+<title>系统首页</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="common/layui/css/layui.css"
+	media="all">
+<link rel="stylesheet" type="text/css"
+	href="common/bootstrap/css/bootstrap.css" media="all">
+<link rel="stylesheet" type="text/css" href="common/global.css">
+<link rel="stylesheet" type="text/css" href="css/main.css" media="all">
+</head>
+
+<body>
+	<style>
+select#orgId {
+	margin-left: 25px;
+}
+</style>
+	<section class="larry-wrapper">
+		<!-- overview -->
+		<div class="row state-overview">
+
+			<div class="col-lg-3 col-sm-6 layui-anim layui-anim-up">
+				<section class="panel">
+					<div class="symbol rsswet layui-anim layui-anim-rotate">
+						<i class="iconpx-check-circle"></i>
+					</div>
+					<div class="value">
+						<a href="#">
+							<h1 id="count4">0</h1>
+						</a>
+						<p>优质客户总数</p>
+					</div>
+				</section>
+			</div>
+
+			<div class="col-lg-3 col-sm-6 layui-anim layui-anim-up">
+				<section class="panel">
+					<div class="symbol articlegreen layui-anim layui-anim-rotate">
+						<i class="iconpx-file-word-o"></i>
+					</div>
+					<div class="value">
+						<a href="#">
+							<h1 id="count3">50</h1>
+						</a>
+						<p>营销数量</p>
+					</div>
+				</section>
+			</div>
+
+			<div class="col-lg-3 col-sm-6 layui-anim layui-anim-up">
+				<section class="panel">
+					<div class="symbol commred layui-anim layui-anim-rotate">
+						<i class="iconpx-user-add"></i>
+					</div>
+					<div class="value">
+						<a href="/sougua-ucenter/html/user/userList.html">
+							<h1 id="count2">
+								<span id="userCountToday"></span>
+							</h1>
+						</a>
+						<p>今日注册用户</p>
+					</div>
+				</section>
+			</div>
+
+			<div class="col-lg-3 col-sm-6 layui-anim layui-anim-up">
+				<section class="panel">
+					<div class="symbol userblue layui-anim layui-anim-rotate">
+						<i class="iconpx-users"></i>
+					</div>
+					<div class="value">
+						<a href="/sougua-ucenter/html/user/userList.html">
+							<h1 id="count1">
+								<span id="userCount"></span>
+							</h1>
+						</a>
+						<p>用户总量</p>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<!-- overview end -->
+		<div class="row">
+			<div class="col-lg-6">
+
+				<!-- 网站信息统计｛SEO数据统计｝ -->
+				<section class="panel">
+					<header class="panel-heading bm0">
+						<span class='span-title'>营销情况统计图</span> <span
+							class="tools pull-right"><a href="javascript:;"
+							class="iconpx-chevron-down"></a></span>
+					</header>
+					<div class="layui-input-inline">
+						<select name="orgId" lay-verify="required" id="orgId">
+							<option value="">请选择机构</option>
+						</select> <select name="chonseDate" lay-verify="required" id="chonseDate">
+							<option value="">请选择时间段</option>
+							<option value="1">今年</option>
+							<option value="2">本月</option>
+							<option value="3">本周</option>
+							<option value="4">今天</option>
+						</select>
+					</div>
+
+					<div class="panel-body laery-seo-box">
+						<div id="container" style="width: 800px; height: 500px;"></div>
+					</div>
+				</section>
+
+				<section class="panel">
+					<header class="panel-heading bm0">
+						<span class='span-title'>系统概览</span> <span
+							class="tools pull-right"><a href="javascript:;"
+							class="iconpx-chevron-down"></a></span>
+					</header>
+					<div class="panel-body">
+						<table class="table table-hover personal-task">
+							<tbody>
+								<tr>
+									<td><strong>版本信息</strong>： 版本名称：<a
+										href="http://www.layui.com">Layui</a> 版本号: 2.1.5</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>开发作者</strong>：</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>网站域名</strong>：www.soogua.cn</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>网站目录</strong>：未定义</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>服务器IP</strong>：未定义</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>服务器环境</strong>：Spring Cloud</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>数据库版本</strong>： MySql 5.7</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>最大上传限制</strong>： 200kb</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>当前登录用户</strong>： <span class="current_user">未定义</span>
+
+									</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+			</div>
+			<div class="col-lg-6">
+				<section class="panel">
+					<header class="panel-heading bm0">
+						<span class='span-title'>转化率饼状图</span> <span
+							class="tools pull-right"><a href="javascript:;"
+							class="iconpx-chevron-down"></a></span>
+					</header>
+					<div class="panel-body laery-seo-box">
+						<div class="larry-seo-stats" id="larry-seo-stats"
+							style="width: 900px; height: 520px;"></div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="common/layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use([ 'jquery', 'layer', 'element', 'form' ], function() {
+			window.jQuery = window.$ = layui.jquery;
+			window.layer = layui.layer;
+			window.element = layui.element;
+			form = layui.form;
+			$form = $('form');
+
+			$('.panel .tools .iconpx-chevron-down').click(
+					function() {
+
+						var el = $(this).parents(".panel").children(
+								".panel-body");
+						if ($(this).hasClass("iconpx-chevron-down")) {
+							$(this).removeClass("iconpx-chevron-down")
+									.addClass("iconpx-chevron-up");
+							el.slideUp(200);
+						} else {
+							$(this).removeClass("iconpx-chevron-up").addClass(
+									"iconpx-chevron-down");
+							el.slideDown(200);
+						}
+
+					})
+		});
+	</script>
+	<script type="text/javascript" src="jsplug/echarts.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script src="js/util/SessionUtil.js" type="text/javascript"></script>
+	<script src="js/lib/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script type="text/javascript"
+		src="common/layDate-v5.0.9/laydate/laydate.js"></script>
+	<script type="text/javascript"
+		src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+	<script type="text/javascript">
+		var dom = document.getElementById("container");
+		var myChart = echarts.init(dom);
+		var app = {};
+		option = null;
+		option = {
+			tooltip : {
+				trigger : 'axis',
+				axisPointer : {
+					type : 'cross'
+				}
+			},
+			legend : {
+				data : [ '推广数量', '点击数量', '注册数量' ]
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					saveAsImage : {}
+				}
+			},
+			xAxis : {
+				type : 'category',
+				boundaryGap : false,
+				data : [ '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天' ]
+			},
+			yAxis : {
+				type : 'value',
+				axisLabel : {
+					formatter : '{value}'
+				},
+				axisPointer : {
+					snap : true
+				}
+			},
+			series : [ {
+				name : '推广数量',
+				type : 'line',
+				smooth : true,
+				data : [ 300, 280, 250, 260, 270, 300, 550 ],
+			}, {
+				name : '点击数量',
+				type : 'line',
+				smooth : true,
+				data : [ 100, 72, 81, 34, 50, 30, 10 ]
+			}, {
+				name : '注册数量',
+				type : 'line',
+				smooth : true,
+				data : [ 1, 3, 12, 13, 15, 16, 60 ]
+			} ]
+		};
+		;
+		if (option && typeof option === "object") {
+			myChart.setOption(option, true);
+		}
+
+		$(function() {
+			initOrg();//初始化机构
+		})
+
+		/**
+		 * 初始化
+		 */
+		function initOrg() {
+			$.ajax({
+				url : "/customer/v1/getOrg",
+				data : {
+					"access_token" : getAccessToken()
+				},
+				type : "post",
+				success : function(data) {
+					if (data.code == "1") {
+						addOrd(data.data);//到添加机构方法。
+					}
+				},
+				error : function(XMLHttpRequest) {
+					if (XMLHttpRequest.status == "401") {
+						window.location.href = "/sougua-ucenter/login.html";
+					}
+				},
+			});
+		}
+
+		/**
+		 *添加机构方法 
+		 */
+		function addOrd(result) {
+			var orgList = result;
+			var orgIdHtml = "";
+			for (var a = 0; a < orgList.length; a++) {
+				var orgInfo = orgList[a];
+				orgIdHtml += '<option value="' + orgInfo.id + '">'
+						+ orgInfo.name + '</option>';
+			}
+			$("#orgId").append(orgIdHtml);
+		}
+	</script>
+</body>
+<script type="text/javascript">
+	$(function() {
+		$.ajax({
+			url : "/sys/ucenter/admin/getUserCount",
+			data : {
+				"access_token" : getAccessToken()
+			},
+			type : "post",
+			async : false,
+			success : function(result) {
+				$("#userCount").text(result.data);
+			},
+			error : function(XMLHttpRequest) {
+				$("#span-loginName").text(0);
+				parent.location.href = "/sougua-ucenter/login.html";
+			},
+		})
+
+		$.ajax({
+			url : "/sys/ucenter/admin/getResignCountToday",
+			data : {
+				"access_token" : getAccessToken()
+			},
+			type : "post",
+			async : false,
+			success : function(result) {
+				$("#userCountToday").text(result.data);
+			},
+			error : function(XMLHttpRequest) {
+				$("#span-loginName").text(0);
+				parent.location.href = "/sougua-ucenter/login.html";
+			},
+		})
+
+	})
+</script>
+
+</html>
